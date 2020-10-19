@@ -33,7 +33,8 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        populateProducts: (state: RootState, action: PayloadAction<ProductItemList | any>) => [...action.payload]
+        populateProducts: (state: RootState, action: PayloadAction<ProductItemList | any>) =>
+            [...action.payload]
     }
 })
 

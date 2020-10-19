@@ -1,8 +1,6 @@
 import { createSlice, Action, PayloadAction, Slice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store';
 
-
-//export type CartLine = { name: string, quantity: number }
 export type CartLines = { [key: string]: number }
 
 const initialCartState: CartLines = {}
@@ -11,7 +9,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState: initialCartState,
     reducers: {
-        updateQuantity: (state: RootState, action: PayloadAction<{ name: string, quantity: number } | any>) => {
+        updateQuantity: (state, action: PayloadAction<{ name: string, quantity: number } | any>) => {
             const { name, quantity } = action.payload
             const itemExists = state[name] !== undefined
             if (itemExists) {
@@ -24,10 +22,11 @@ export const cartSlice = createSlice({
             } else {
                 state[name] = quantity
             }
-        }
+        },
+        clearCart: (state) => ({})
     }
 })
 
 export const selectCartItems = (state: RootState) => state.cartItems
 export const cartReducer = cartSlice.reducer
-export const { updateQuantity } = cartSlice.actions
+export const { updateQuantity, clearCart } = cartSlice.actions
